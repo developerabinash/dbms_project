@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+   <div id="myprofile">
+    <div id="profileicon">   <i class="fas fa-user fa-2x"></i></div>
+    <div id="user">
+    <div id="username"></div>
+    <div id="editicon" onclick="handleedit()"> <i class="fas fa-edit fa-1x"></i></div>
+   </div>
+    <div id="changepasswordbtn" onclick="handlepass()">change password</div>
+   </div> 
+   <div id="editname">
+    <input type="text" placeholder="Enter name to edit" id="editnameid" required>
+    <input type="number" placeholder="Enter your password" id="passid" required>
+    <div id="editsubmit" onclick="handleupdatename()">submit</div>
+</div>
+<div id="editpassword">
+    <input type="number" placeholder="Enter your password" id="passwordid" required>
+    <input type="number" placeholder="Enter your new password" id="editpassid" required>
+    <div id="editsubmitpassword" onclick="handleupdatepassword()">submit</div>
+</div>
+   <script>
+   document.getElementById('username').innerHTML= localStorage.getItem('c_name')
+   function handleedit(){
+    document.getElementById('editname').style.opacity=1;
+    document.getElementById('editname').style.visibility='visible';
+   }
+   function handlepass(){
+    document.getElementById('editpassword').style.opacity=1;
+   document.getElementById('editpassword').style.visibility='visible';
+}
+
+   function handleupdatename(){
+ const name = document.getElementById('editnameid').value;
+    const password = document.getElementById('passid').value;
+    const c_id=localStorage.getItem('c_id')
+
+    const formData = { name, password,c_id };
+
+    fetch('http://localhost:3000/updatename', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        if(data.username){
+        document.getElementById('username').innerHTML= data.username;
+        
+        localStorage.setItem('c_name', data.username);
+        }
+        else{
+            window.alert(data.message)
+        }
+    }
+)
+    .catch(error => console.error('Error:', error));
+}
+function handleupdatepassword(){
+ const o_password = document.getElementById('passwordid').value;
+    const n_password = document.getElementById('editpassid').value;
+    const c_id=localStorage.getItem('c_id')
+
+    const formData = { o_password, n_password,c_id };
+
+    fetch('http://localhost:3000/updatepassword', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        window.alert(data.message)
+    }
+)
+    .catch(error => console.error('Error:', error));
+}
+   
+   </script>
+</body>
+</html>

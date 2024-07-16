@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="root">
+        <div id="navbar">
+            <div id="fabars">
+                <i class="fas fa-bars fa-1x" id="icon">
+                    <script>
+                        document.getElementById('icon').onclick = function() {
+                        const div=document.getElementById('dropdownmenu');
+                        if (div.style.display === 'none' ||div.style.display ==='') {
+                           div.style.display = 'block';
+                        } else {
+                           div.style.display = 'none';
+                        }
+                          }
+                   </script>
+                </i>
+                <div id="dropdownmenu">
+                    <div id="login">Login/SignUp
+                        <script>
+                              document.getElementById('login').onclick = function() {
+                        document.getElementById('loginform').style.opacity=1;
+                        document.getElementById('loginform').style.visibility='visible';
+                  
+                          }
+                        </script>
+                    </div>
+                    <div id="profile"><a href="./profile.html">Profile</a></div>
+                    <div id="logout" onclick="handlelogout()">Logout
+                        <script>
+                            function handlelogout(){
+                               localStorage.setItem('c_id','');
+                               window.alert('logout sucessfully')
+                            }
+                        </script>
+                    </div>
+                </div>
+            
+        </div>
+
+        <div id="loginform">
+            <div id="cross"><p>&times;</p>
+            <script>
+                     document.getElementById('cross').onclick = function() {
+                    document.getElementById('loginform').style.opacity=0;
+                    document.getElementById('loginform').style.visibility='hidden';
+                    }
+            </script>
+            </div>
+            <div id="heading"><h3>Login/SignUp</h3></div>
+            <div id="name">
+            <label>Name:</label>
+            <input id="nameid" type="text" placeholder="Enter you name">
+            </div>
+            <div id="password">
+            <label>Password:</label>
+            <input  id="passwordid" type="text" placeholder="Enter your password">
+            </div>
+            <div id="loginsignup">
+                <div id="signup" onclick="sendData()">SignUp
+                    <script src="./signup.js"> </script>
+                </div>
+                <div id="login" onclick="checkData()">Login
+                    <script src="./login.js"> </script>
+                </div>
+            </div>
+        </div>
+        </div>
+    <div id="cardcontainer">
+            <script src="./index.js"></script>
+            <script>     
+function orderform(p_id) {
+    localStorage.setItem('productId', p_id);
+    console.log(p_id)
+    if(localStorage.getItem('c_id')===''||localStorage.getItem('c_id')===null||localStorage.getItem('c_id')===undefined){
+        window.alert('please signup/login first')
+    }
+else{
+  document.getElementById('orderform').style.opacity=1;
+  document.getElementById('orderform').style.visibility='visible';
+        fetch('./Products.json')
+            .then(response => response.json())
+            .then(products => {
+                console.log(products)
+                products.map(product =>{
+                    if(product.id===p_id){
+                        document.getElementById('p_title').innerHTML = product.title; 
+                        document.getElementById('unitprice').innerHTML = product.price;
+                        localStorage.setItem('productPrice', product.price.toFixed(2));
+                        document.getElementById('totalprice').innerHTML = product.price;
+                        console.log(product.title)
+                    }}
+                )})
+}
+} 
+            </script>
+            <script>
+                function handlequantitychange(){
+                    const savedPrice = localStorage.getItem('productPrice');
+                    console.log(savedPrice)
+                    const quantity = document.getElementById('quantityid').value;
+                    if(quantity>0){
+                    const totalprice=quantity*savedPrice;
+                    document.getElementById('totalprice').innerHTML = totalprice.toFixed(2);}
+                    else{
+                        document.getElementById('totalprice').innerHTML =savedPrice.toFixed(2);
+                        document.getElementById('quantityid').value=1;    
+                    }
+                }
+            </script>
+    </div>
+    <div id="orderform">
+        <div id="orderformcross"><p>&times;</p>
+        <script>
+             document.getElementById('orderformcross').onclick = function() {
+                    document.getElementById('orderform').style.opacity=0;
+                    document.getElementById('orderform').style.visibility='hidden';
+                    }  
+        </script>
+        </div>
+        <div id="productdetail">
+      <div> <label>Product_name:</label><div id="p_title"></div></div> 
+      <div> <label>Quantity:</label><div id="quantity"><input id="quantityid" type="number" placeholder="Quantity" onchange="handlequantitychange()" value="1"></div></div> 
+      <div> <label>Unit_price:</label><span>$</span><div id="unitprice"></div><span>/-</span></div> 
+      <div> <label>Total_price:</label><span>$</span><div id="totalprice"></div><span>/-</span></div> 
+    </div>
+        <div id="o_name"><label>Cutomer_name:</label><input id="o_nameid" type="text" placeholder="Enter your name"></div>
+        <div id="o_phone"><label>Phone_number:</label><input id="o_phoneid" type="number" placeholder="Enter your phone number"></div>
+        <div id="o_email"><label>Email:</label><input id="o_emailid" type="email" placeholder="Enter your email"></div>
+        <div id="o_address"><label>Address:</label><input id="o_addressid" type="text" placeholder="Enter your address"></div>
+        <div id="checkoutbtn" onclick="handleorder()">Checkout  <script src="./order.js"> </script></div>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,350 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    text-align: justify;
+    font-family: system-ui;
+    line-height: 1.14;
+}
+#root{
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+#navbar{
+    width: 100%;
+    height: 60px;
+    background-color: #7942da;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+#fabars{
+    margin-right: 2%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   #fabars:hover{
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #6d3cc5;
+   }
+  
+#fabars>.fa-1x {
+    font-size: 25px;
+    color: white;
+}
+    
+#cardcontainer{
+    flex:1;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  padding-bottom: 10px;
+
+}
+#card{
+    margin-top: 10px;
+  flex-basis: 45%;
+display: flex;
+  height: 353px;
+  align-items: center;
+  box-shadow: 0px 2px 11px 6px rgba(0,0,0 ,0.3);
+  border-radius: 10px;
+  gap:10px;
+  padding: 10px;
+  overflow-y: scroll;
+}
+#card>#imagecontainer{
+    width: 200px;
+    height: 100%;
+    flex-shrink: 0;
+}
+#image{
+    width: 100%;
+    height: 80%;
+}
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+}
+#title{
+    width: 100%;
+    height:20%;
+    display: flex;
+    justify-content: center;
+   /* align-items: center;*/
+    padding: 10px;
+    overflow-y: scroll;
+    text-align-last: center;
+}
+#details{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+#category{
+    display: flex;
+
+}
+div#cardbutton {
+    width: 110px;
+    text-align: center;
+    background: linear-gradient(45deg, orange, yellow, #eb6deb);
+    padding: 5px;
+}
+div#cardbutton:hover {
+cursor: pointer;
+transform: scale(0.94);
+    transition: transform 0.2s linear;
+
+}
+#dropdownmenu{
+    position: absolute;
+    width: 150px;
+    height: 120px;
+    top: 60px;
+    right: 2%;
+    background-color: #7942da;
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    display: none;
+}
+#dropdownmenu>div{
+    width: 100%;
+    height: 38px;
+    padding: 10px;
+}
+#dropdownmenu>div:hover{
+cursor: pointer;
+background-color: #6d3cc5;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+#loginform{
+
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #7942da;
+    border-radius: 10px;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+}
+div#cross {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    align-items: center;
+}
+div#cross>p {
+    font-size: 40px;
+}
+div#cross:hover{
+    cursor: pointer;
+}
+div#heading {
+    margin-top: 20%;
+    
+}
+div#name {
+    width: 80%;
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+ 
+}
+div#password {
+    width: 80%;
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20%;
+}
+#name>label{
+    width: 75px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+#name>input{
+    width:217px;
+    height: 100%;
+    padding: 0px 10px;
+    outline-color: green;
+}
+#password>label{
+    width:75px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+#password>input{
+    width: 217px;
+    height: 100%;
+    padding: 0px 10px;
+    outline-color: green;
+}
+div#loginsignup {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+div#loginsignup>div {
+    width: 80px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#login{
+cursor: pointer;
+}
+#signup{
+    cursor: pointer;
+}
+#orderform{
+    width: 500px;
+    height: 500px;
+    background-color: #6d3cc5;
+    position: absolute;
+    border-radius: 10px;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    padding-left: 70px;
+    color: white;
+    gap: 15px;
+}
+#orderform>div:not(#productdetail){
+    height: 30px;
+    display: flex;
+    gap: 20px;
+}
+#orderform>div:not(#productdetail)>input{
+    width: 217px;
+    height: 100%;
+    padding: 0px 10px;
+    outline-color: green;
+}
+#orderform>div>label{
+    width: 105px;
+    display: flex;
+    align-items: center;
+}
+#orderformcross{
+margin-left: auto;
+}
+#orderformcross:hover{
+    cursor: pointer;
+}
+#orderformcross>p {
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+::-webkit-scrollbar-track {
+ 
+  background-color: transparent;
+}
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+#productdetail{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+#productdetail>div{
+    display: flex;
+    height: 30px;
+    gap: 20px;
+}
+#productdetail>div>label{
+    width: 105px;
+    display: flex;
+    align-items: center;
+}
+#quantity>input{
+    width: 217px;
+    height: 100%;
+    padding: 0px 10px;
+    outline-color: green;
+}
+#quantity{
+
+}
+#p_title{
+    display: flex;
+    align-items: center;
+}
+span{
+    display: flex;
+    align-items: center;
+}
+#unitprice{
+    display: flex;
+    align-items: center;
+}
+#totalprice{
+    display: flex;
+    align-items: center;
+}
+#o_name{
+
+}
+#o_phone{
+
+}
+#o_email{
+
+}
+#o_address{
+
+}
+#checkoutbtn{
+    background: green;
+    width: 90px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+}
+#checkoutbtn:hover{
+    cursor: pointer;
+}
